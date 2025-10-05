@@ -8,7 +8,8 @@
     "android": "dotenv -e .env.local -- expo start --android",
     "ios": "dotenv -e .env.local -- expo start --ios",
     "web": "dotenv -e .env.local -- expo start --web",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "eas:build:preview": "eas build -p all --profile preview"
   },
   "dependencies": {
     "@expo/metro-runtime": "~6.1.2",
@@ -42,6 +43,7 @@
   "devDependencies": {
     "@types/react": "~19.1.0",
     "dotenv-cli": "^10.0.0",
+    "eas-cli": "^16.20.1",
     "eslint": "^9.25.0",
     "eslint-config-expo": "~10.0.0",
     "typescript": "~5.9.2"
