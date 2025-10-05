@@ -22,17 +22,21 @@ docker compose up -d
 ### モジュールのインストール
 
 storefront でインストール。
+開発サーバー起動。
 
 ```
 ./docker/storefront/login
 npm i
+npm run start
 ```
 
 vendure でインストール。
+開発サーバー、ワーカー起動
 
 ```
 ./docker/vendure/login
 npm i
+npm run dev
 ```
 
 ## 実機接続 (ios,android)
