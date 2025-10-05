@@ -1,0 +1,3 @@
+FROM node:lts
+WORKDIR /app
+EXPOSE 8081

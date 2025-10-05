@@ -1,0 +1,57 @@
+services:
+  storefront:
+    container_name: storefront
+    build: ./docker/storefront
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./storefront:/app
+    tty: true
+    networks:
+      - app-network
+
+  vendure:
+    container_name: vendure
+    build: ./docker/vendure
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./vendure:/app
+    tty: true
+    networks:
+      - app-network
+    depends_on:
+      - postgresql
+
+  postgresql:
+    image: postgres:18-alpine
+    container_name: postgresql
+    environment:
+      POSTGRES_DB: pgs
+      POSTGRES_USER: pgs
+      POSTGRES_PASSWORD: pgspass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  adminer:
+    image: adminer:5
+    container_name: adminer
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    networks:
+      - app-network
+    depends_on:
+      - postgresql
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
